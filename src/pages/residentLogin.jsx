@@ -28,10 +28,9 @@ const ResidentLogin = () => {
     
     try {
       const data = await loginResidentUser(formData.email, formData.password);
-      localStorage.setItem('residentToken', data.token);
       setMessage('Login successful! Redirecting...');
       setMessageType('success');
-      setTimeout(() => navigate('/resident/dashboard'), 2000);
+      setTimeout(() => navigate('/resident-dashboard'), 1500);
     } catch (err) {
       setMessage(err.message || 'Login failed. Please try again.');
       setMessageType('error');
