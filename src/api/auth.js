@@ -47,10 +47,13 @@ export const logout = () => {
 export const loginResidentUser = async (email, password) => {
     try {
         const response = await axios.post(API_URL + 'loginResident', { email, password });
-        // If successful, save the token so the user stays logged in
+        // If successful, save the token and user data so the user stays logged in
         if (response.data.token) {
+            localStorage.setItem('residentToken', response.data.token);
             localStorage.setItem('userToken', response.data.token);
+            localStorage.setItem('userId', response.data.user.id);
             localStorage.setItem('userRole', response.data.user.role);
+            localStorage.setItem('userEmail', response.data.user.email);
         }
         return response.data;
     } catch (error) {
